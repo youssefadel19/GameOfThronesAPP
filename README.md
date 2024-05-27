@@ -15,10 +15,10 @@ A flutter project to show the characters of the GOT series and basic information
 Here are some screenshots for the app.
 
 ### Screenshot 1
-![screenshoot1](screenshots/screenshot1.png)
+![](https://github.com/youssefadel19/login/blob/0f92238711ef8fc306f6be0c9c62ccedb865afd5/ScreenShot1.PNG)
 
 ### Screenshot 2
-![screenshot2](screenshots/screenshot2.png)
+![](https://github.com/youssefadel19/login/blob/0f92238711ef8fc306f6be0c9c62ccedb865afd5/ScreenShot2.PNG)
 
 
 ## Contact
