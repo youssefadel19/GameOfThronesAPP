@@ -19,7 +19,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
   List<Character> searchedCharacters = [];
   bool _isSearching = false;
   final _searchTextController = TextEditingController();
-
+  @override
   void initState() {
     super.initState();
     BlocProvider.of<CharactersCubit>(context).getAllCharacters();
@@ -29,7 +29,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
     return TextField(
       controller: _searchTextController,
       cursorColor: MyColors.myGrey,
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         hintText: 'find a character',
         border: InputBorder.none,
         hintStyle: TextStyle(
@@ -37,7 +37,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
           fontSize: 18,
         ),
       ),
-      style: TextStyle(
+      style: const TextStyle(
         color: MyColors.myGrey,
         fontSize: 18,
       ),
@@ -63,7 +63,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
               clearSearch();
               Navigator.pop(context);
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.clear,
               color: MyColors.myGrey,
             )),
@@ -74,7 +74,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
             onPressed: () {
               startSearching();
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.search,
               color: MyColors.myGrey,
             )),
@@ -104,13 +104,12 @@ class _CharactersScreenState extends State<CharactersScreen> {
   }
 
   Widget buildAppBarTitle() {
-    return Text(
+    return const Text(
       'Characters',
       style: TextStyle(color: MyColors.myGrey, fontWeight: FontWeight.bold),
     );
   }
 
-  @override
   Widget buildBlockWidget() {
     return BlocBuilder<CharactersCubit, CharactersState>(
         builder: (context, state) {
@@ -124,7 +123,6 @@ class _CharactersScreenState extends State<CharactersScreen> {
   }
 
   Widget buildLoadedListWidget() {
-    print(allCharacters.length);
     return SingleChildScrollView(
       child: Container(
         color: MyColors.myGrey,
@@ -139,13 +137,13 @@ class _CharactersScreenState extends State<CharactersScreen> {
 
   Widget buildCharactersList() {
     return GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,
             childAspectRatio: 2 / 3,
             crossAxisSpacing: 1,
             mainAxisSpacing: 1),
         shrinkWrap: true,
-        physics: ClampingScrollPhysics(),
+        physics: const ClampingScrollPhysics(),
         padding: EdgeInsets.zero,
         itemCount:
             _isSearching ? searchedCharacters.length : allCharacters.length,
@@ -158,44 +156,42 @@ class _CharactersScreenState extends State<CharactersScreen> {
   }
 
   Widget showLoadingIndicator() {
-    return Center(
+    return const Center(
       child: CircularProgressIndicator(
         color: MyColors.myYellow,
       ),
     );
   }
 
-  Widget buildNoInternetWidget(){
-
+  Widget buildNoInternetWidget() {
     return Center(
       child: Container(
         color: Colors.white,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: 20,),
-            Text(
+            const SizedBox(
+              height: 20,
+            ),
+            const Text(
               'Can\'t connect .. please check your internet !',
-              style: TextStyle(
-                fontSize: 20,
-                color: MyColors.myGrey
-              ),
+              style: TextStyle(fontSize: 20, color: MyColors.myGrey),
             ),
             Image.asset('assets/images/nointernet.png'),
           ],
         ),
       ),
     );
-
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: MyColors.myGrey,
         appBar: AppBar(
           backgroundColor: MyColors.myYellow,
           leading: _isSearching
-              ? BackButton(
+              ? const BackButton(
                   color: MyColors.myGrey,
                 )
               : Container(),
@@ -203,24 +199,20 @@ class _CharactersScreenState extends State<CharactersScreen> {
           actions: buildAppBarItems(),
         ),
         body: OfflineBuilder(
-            connectivityBuilder: (
-          BuildContext context,
-          ConnectivityResult connectivity,
-          Widget child,
-        ) {
-              final bool connected=connectivity!=ConnectivityResult.none;
+          connectivityBuilder: (
+            BuildContext context,
+            ConnectivityResult connectivity,
+            Widget child,
+          ) {
+            final bool connected = connectivity != ConnectivityResult.none;
 
-              if(connected){
-                return buildBlockWidget();
-              }
-              else{
-                return buildNoInternetWidget();
-              }
-            },
+            if (connected) {
+              return buildBlockWidget();
+            } else {
+              return buildNoInternetWidget();
+            }
+          },
           child: Container(),
-        )
-
-
-        );
+        ));
   }
 }

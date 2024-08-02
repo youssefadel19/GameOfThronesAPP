@@ -1,25 +1,23 @@
 import 'package:breakingbadproject/constants/strings.dart';
 import 'package:dio/dio.dart';
-class CharactersWebServices{
 
+class CharactersWebServices {
   late Dio dio;
 
-  CharactersWebServices(){
-    BaseOptions options=BaseOptions(
+  CharactersWebServices() {
+    BaseOptions options = BaseOptions(
       receiveDataWhenStatusError: true,
-      connectTimeout:Duration(seconds: 30) ,
-      receiveTimeout:Duration(seconds: 30),
+      connectTimeout: const Duration(seconds: 30),
+      receiveTimeout: const Duration(seconds: 30),
     );
-    dio=Dio(options);
+    dio = Dio(options);
   }
 
-  Future<List<dynamic>> getAllCharacters() async{
-    try{
-      Response response=await dio.get(baseUrl);
+  Future<List<dynamic>> getAllCharacters() async {
+    try {
+      Response response = await dio.get(baseUrl);
       return response.data;
-    }
-    catch(error){
-      print(error.toString());
+    } catch (error) {
       return [];
     }
   }

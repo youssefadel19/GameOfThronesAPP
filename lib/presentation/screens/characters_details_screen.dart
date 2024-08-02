@@ -15,7 +15,7 @@ class CharacterDetailsScreen extends StatelessWidget {
       flexibleSpace: FlexibleSpaceBar(
         title: Text(
           character.firstName,
-          style: TextStyle(
+          style: const TextStyle(
             color: MyColors.myWhite,
           ),
         ),
@@ -39,7 +39,7 @@ class CharacterDetailsScreen extends StatelessWidget {
           children: [
             TextSpan(
               text: title,
-              style: TextStyle(
+              style:const TextStyle(
                 color: MyColors.myWhite,
                 fontWeight: FontWeight.bold,
                 fontSize: 18
@@ -47,7 +47,7 @@ class CharacterDetailsScreen extends StatelessWidget {
             ),
             TextSpan(
                 text: value,
-                style: TextStyle(
+                style: const TextStyle(
                     color: MyColors.myWhite,
                     fontSize: 16
                 )
@@ -78,8 +78,8 @@ class CharacterDetailsScreen extends StatelessWidget {
           SliverList(
               delegate: SliverChildListDelegate([
             Container(
-              margin: EdgeInsets.fromLTRB(14, 14, 14, 0),
-              padding: EdgeInsets.all(8),
+              margin:const  EdgeInsets.fromLTRB(14, 14, 14, 0),
+              padding: const EdgeInsets.all(8),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,7 +95,7 @@ class CharacterDetailsScreen extends StatelessWidget {
                 ],
               ),
             ),
-                SizedBox(height: 500,)
+                const SizedBox(height: 500,)
           ]))
         ],
       ),

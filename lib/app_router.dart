@@ -5,46 +5,34 @@ import 'package:breakingbadproject/data/web_services/characters_web_services.dar
 import 'package:breakingbadproject/logic/characters_cubit.dart';
 import 'package:breakingbadproject/presentation/screens/characters_details_screen.dart';
 import 'package:breakingbadproject/presentation/screens/characters_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
-class AppRouter{
-  
+class AppRouter {
   late CharactersRepository charactersRepository;
   late CharactersCubit charactersCubit;
-  
-  AppRouter(){
-    charactersRepository=CharactersRepository(CharactersWebServices());
-    charactersCubit=CharactersCubit(charactersRepository);
-  }
-  
-  
-  Route? generateRoute(RouteSettings settings){
-    switch(settings.name){
-      case charactersScreen:
-        return MaterialPageRoute(builder: (_)=> BlocProvider(
-            create: (BuildContext context)=> charactersCubit,
-            child: CharactersScreen(),
-        ),
 
+  AppRouter() {
+    charactersRepository = CharactersRepository(CharactersWebServices());
+    charactersCubit = CharactersCubit(charactersRepository);
+  }
+
+  Route? generateRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case charactersScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (BuildContext context) => charactersCubit,
+            child: const CharactersScreen(),
+          ),
         );
 
       case characterDetailsScreen:
-        final character=settings.arguments as Character;
-        return MaterialPageRoute(builder: (_)=> CharacterDetailsScreen(character: character,));
+        final character = settings.arguments as Character;
+        return MaterialPageRoute(
+            builder: (_) => CharacterDetailsScreen(
+                  character: character,
+                ));
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
